@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adouay <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/03 22:20:43 by adouay            #+#    #+#             */
-/*   Updated: 2022/05/05 00:38:00 by adouay           ###   ########.fr       */
+/*   Created: 2022/05/04 11:56:58 by adouay            #+#    #+#             */
+/*   Updated: 2022/05/04 12:24:35 by adouay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*p;
-	size_t	i;
-
-	p = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		p[i] = '\0';
-		i++;
-	}
-	return ;
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }
+/*
+int main()
+{
+	int fd;
+
+	fd = open("test.txt", O_WRONLY);
+	ft_putendl_fd("salut gars", fd);
+	close(fd);
+	return (0);
+}
+*/

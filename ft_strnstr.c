@@ -1,35 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adouay <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/04 20:26:15 by adouay            #+#    #+#             */
+/*   Updated: 2022/05/05 22:50:05 by adouay           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-    char *o;
-    char *l;
+	size_t	i;
 
-    l = (char *)little;
-    if (*little == '\0')
-        return ((char *)big);
-    while (--len && *big)
-    {
-        if (*little == *big)
-        {
-            o = (char *)big;
-            while (*++l == *++big && --len);
-            if (*l == '\0')
-                return (o);
-            else
-                l = (char *)little;
-        }
-        big++;
-    }
-    return (0);
+	i = 0;
+	if (ft_strlen(little) == 0)
+		return ((char *)big);
+	while (big[i] && i < len)
+	{
+		if (ft_strncmp(big + i, little, ft_strlen(little)) == 0
+			&& (ft_strlen(little) + i) <= len)
+			return ((char *)big + i);
+		i++;
+	}
+	return (NULL);
 }
-
-int main()
+/*int main()
 {
-    char *big = "salut";
-    char *little = "lu";
-    printf("%s\n", strnstr(big, little, 3));
-    printf("%s\n", ft_strnstr(big, little, 3));
+    char *big = "aaabcabcd";
+    char *little = "abcd";
+    //printf("%s\n", strnstr(big, little, 5));
+    printf("%s\n", ft_strnstr(big, little, -1));
     return (0);
-}
+}*/

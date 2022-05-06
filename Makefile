@@ -1,21 +1,81 @@
-NAME= libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: adouay <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/05/03 20:53:27 by adouay            #+#    #+#              #
+#    Updated: 2022/05/06 18:47:35 by adouay           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror
+NAME = libft.a
 
-SRC= $(wildcard *.c)
+CC = gcc -Wall -Wextra -Werror
 
-OBJ= $(SRC:.c=.o)
+SRC = ft_atoi.c \
+    ft_bzero.c \
+    ft_calloc.c \
+    ft_isalnum.c \
+    ft_isalpha.c \
+    ft_isascii.c \
+    ft_isdigit.c \
+    ft_isprint.c \
+    ft_itoa.c \
+    ft_memchr.c \
+    ft_memcmp.c \
+    ft_memcpy.c \
+    ft_memmove.c \
+    ft_memset.c \
+    ft_putchar_fd.c \
+    ft_putendl_fd.c \
+    ft_putnbr_fd.c \
+    ft_putstr_fd.c \
+    ft_split.c \
+    ft_strchr.c \
+    ft_strdup.c \
+    ft_striteri.c \
+    ft_strjoin.c \
+    ft_strlcat.c \
+    ft_strlcpy.c \
+    ft_strlen.c \
+    ft_strmapi.c \
+    ft_strncmp.c \
+    ft_strnstr.c \
+    ft_strrchr.c \
+    ft_strtrim.c \
+    ft_substr.c \
+    ft_tolower.c \
+    ft_toupper.c
 
-RM= rm -f
+BONUS_SRC = ft_lstnew_bonus.c \
+            ft_lstadd_front_bonus.c \
+            ft_lstsize_bonus.c \
+            ft_lstlast_bonus.c \
+            ft_lstadd_back_bonus.c \
 
-all: $(NAME)
+BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
-$(NAME): $(OBJ)
-	ar -rcs $@ $^
-$(OBJ): $(SRC)
-	gcc $(FLAGS) -o $@ -c $<  
-clean:
-	$(RM) $(OBJ)
-fclean: clean
-	$(RM) $(NAME)
-re: fclean all 
+OBJ = $(SRC:.c=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	ar rc $(NAME) $^
+
+%.o : %.c
+	$(CC) -c $^
+
+bonus : $(OBJ) $(BONUS_OBJ)
+	ar rc $(NAME) $^
+
+clean :
+	rm -f $(OBJ) $(BONUS_OBJ)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
+
+.PHONY : all bonus clean fclean re

@@ -1,19 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adouay <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/03 23:17:51 by adouay            #+#    #+#             */
+/*   Updated: 2022/05/04 21:55:57 by adouay           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    unsigned char *p;
-    p = (unsigned char *)s;
-    while (*p && n--)
-    {
-        if (*p != (unsigned char)c)    
-            p++;
-        else
-            return (p);
-    }
-    return (0);
-}
+	char	*p;
 
+	c = c % 256;
+	p = (char *)s;
+	while (n--)
+	{
+		if (*p != c)
+			p++;
+		else
+			return (p);
+	}
+	return (0);
+}
+/*
 int main()
 {
     char *str = "salut les gars";
@@ -27,3 +41,4 @@ int main()
 
     return (0);
 }
+*/

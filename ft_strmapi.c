@@ -1,45 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adouay <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 13:49:50 by adouay            #+#    #+#             */
-/*   Updated: 2022/05/06 00:46:58 by adouay           ###   ########.fr       */
+/*   Created: 2022/05/04 17:32:08 by adouay            #+#    #+#             */
+/*   Updated: 2022/05/04 18:32:09 by adouay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+/*
+char f(unsigned int i, char c)
 {
-	size_t	dlen;
-	size_t	slen;
+	char str;
+	str = c + i;
+	return (str);
+}
+*/
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
 	size_t	i;
+	size_t	len;
+	char	*p;
 
-	dlen = ft_strlen(dst);
-	slen = ft_strlen(src);
 	i = 0;
-	if (size <= dlen)
-		return (size + slen);
-	while (src[i] != '\0' && dlen < (size - 1))
+	len = ft_strlen(s);
+	if (!s || !f)
+		return (NULL);
+	p = malloc(sizeof(char) * (len + 1));
+	if (!p)
+		return (0);
+	while (i < len)
 	{
-		dst[dlen] = src[i];
-		dlen++;
+		p[i] = (*f)(i, s[i]);
 		i++;
 	}
-	dst[dlen] = '\0';
-	return ((dlen - i) + slen);
+	p[i] = '\0';
+	return (p);
 }
 /*
-int	main()
+int main()
 {
-	char dest[100] = "salut";
-	char *src = "loulotgrgr";
-	size_t size = ft_strlcat(dest, src, 100);
-	printf("%s\n", dest);
-	printf("%ld\n", size);
+	char str1[] = "\0";
+	char* str2;
+	str2 = ft_strmapi(str1, *f);
+	printf("%s\n", str2);
+	free(str2);
 	return (0);
 }
 */
