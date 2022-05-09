@@ -6,7 +6,7 @@
 #    By: adouay <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 20:53:27 by adouay            #+#    #+#              #
-#    Updated: 2022/05/06 18:47:35 by adouay           ###   ########.fr        #
+#    Updated: 2022/05/09 16:22:09 by adouay           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ BONUS_SRC = ft_lstnew_bonus.c \
             ft_lstsize_bonus.c \
             ft_lstlast_bonus.c \
             ft_lstadd_back_bonus.c \
+			ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c
 
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
